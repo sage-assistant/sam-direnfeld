@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Nobel Assembly at Karolinska Institutet — Special Announcement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface-2: #16161f;
+      --border: rgba(255,255,255,0.06);
+      --text: #f0efe8;
+      --text-dim: #8a8a95;
+      --gold: #c9a84c;
+      --gold-soft: rgba(201,168,76,0.1);
+      --gold-glow: rgba(201,168,76,0.3);
+      --navy: #1a2744;
+      --green: #4caf50;
+      --green-soft: rgba(76,175,80,0.1);
+      --blue: #5b8bd4;
+      --blue-soft: rgba(91,139,212,0.1);
+      --red: #c0392b;
+      --red-soft: rgba(192,57,43,0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* SPLASH */
+    .splash {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      transition: opacity 0.6s, visibility 0.6s;
+    }
+    .splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    .splash-crest {
+      width: 120px;
+      height: 120px;
+      border: 3px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+      animation: crest-glow 3s ease-in-out infinite;
+    }
+    @keyframes crest-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(201,168,76,0.2); }
+      50% { box-shadow: 0 0 40px rgba(201,168,76,0.4); }
+    }
+
+    .splash h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .splash h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--text-dim);
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    .splash .splash-date {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .splash .embargo {
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.5rem;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 4px;
+      margin-bottom: 3rem;
+    }
+
+    .enter-btn {
+      padding: 1.25rem 3rem;
+      background: var(--gold);
+      border: none;
+      border-radius: 4px;
+      color: var(--bg);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .enter-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px var(--gold-glow); }
+
+    .splash-footer {
+      position: absolute;
+      bottom: 2rem;
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      opacity: 0.4;
+    }
+
+    /* LAYOUT */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); position: relative; z-index: 1; }
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    .label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* GRADIENT BG */
+    .gradient-bg {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 50% at 80% 80%, rgba(201,168,76,0.02) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* GOLD BAR */
+    .gold-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9998;
+      padding: 0.4rem 2rem;
+      background: var(--gold);
+      color: var(--bg);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: all 0.5s;
+    }
+    .gold-bar.visible { opacity: 1; transform: translateY(0); }
+
+    /* LIVE CARB TRACKER */
+    .carb-tracker {
+      position: fixed;
+      top: 3rem;
+      right: 2rem;
+      z-index: 9999;
+      padding: 1rem 1.5rem;
+      background: var(--surface-2);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      opacity: 0;
+      transition: opacity 0.5s;
+      min-width: 180px;
+    }
+    .carb-tracker.visible { opacity: 1; }
+    .carb-tracker-label {
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .carb-tracker-label::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+    .carb-tracker-value { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 600; color: var(--gold); }
+    .carb-tracker-status { font-size: 0.65rem; color: var(--green); margin-top: 0.2rem; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+    }
+    .hero-glow {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+      filter: blur(100px);
+      opacity: 0.2;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 1.25rem;
+      background: var(--gold-soft);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 4px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.1s forwards;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 7vw, 5rem);
+      font-weight: 600;
+      max-width: 900px;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.3s forwards;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .hero-title .gold { color: var(--gold); }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: var(--text-dim);
+      max-width: 650px;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.5s forwards;
+    }
+    .hero-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.7s forwards;
+    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* SECTIONS */
+    section { padding: clamp(5rem, 12vw, 8rem) 0; }
+    .section-header { text-align: center; max-width: 750px; margin: 0 auto 3.5rem; }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      margin-top: 0.75rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+    .section-desc { font-size: 0.95rem; color: var(--text-dim); line-height: 1.8; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* CITATION SECTION */
+    .citation-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .citation-box {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 3rem;
+      background: var(--bg);
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      position: relative;
+    }
+    .citation-seal {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 20px var(--gold-glow);
+    }
+    .citation-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 2;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .citation-text .highlight { color: var(--gold); font-weight: 600; }
+
+    /* TIMELINE */
+    .timeline { position: relative; max-width: 700px; margin: 0 auto; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+    }
+    .timeline-item {
+      padding-left: 60px;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 16px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      background: var(--gold);
+      border-radius: 50%;
+      border: 3px solid var(--bg);
+    }
+    .timeline-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+    }
+    .timeline-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .timeline-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.7; }
+
+    /* CARB CALCULATOR */
+    .calc-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .calc-box {
+      max-width: 550px;
+      margin: 0 auto;
+      padding: 2.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .calc-question {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .calc-options { display: flex; flex-direction: column; gap: 0.75rem; }
+    .calc-option {
+      padding: 1rem 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--text);
+      text-align: left;
+      transition: all 0.3s;
+    }
+    .calc-option:hover { border-color: var(--gold); background: var(--gold-soft); }
+    .calc-option.selected { border-color: var(--gold); background: var(--gold-soft); }
+    .calc-option.wrong { border-color: var(--red); background: var(--red-soft); }
+    .calc-result {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: var(--gold-soft);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 8px;
+      text-align: center;
+      display: none;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .calc-result.visible { display: block; animation: fadeUp 0.5s ease-out; }
+    .calc-result .verdict { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--gold); display: block; margin-bottom: 0.5rem; }
+
+    /* EVIDENCE GRID */
+    .evidence-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .evidence-card {
+      padding: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .evidence-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+    .evidence-emoji { font-size: 2.5rem; margin-bottom: 1rem; }
+    .evidence-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .evidence-card p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.6; }
+    .evidence-badge {
+      margin-top: 1rem;
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: var(--gold-soft);
+      border-radius: 100px;
+      font-size: 0.65rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* FATHER SON */
+    .dynasty-section { background: var(--bg); }
+    .dynasty-box {
+      max-width: 700px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .dynasty-card {
+      padding: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-align: center;
+    }
+    .dynasty-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .dynasty-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .dynasty-role { font-size: 0.75rem; color: var(--text-dim); }
+    .dynasty-connector {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--gold);
+    }
+    .dynasty-footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .testimonial {
+      padding: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      position: relative;
+    }
+    .testimonial::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      color: var(--gold);
+      opacity: 0.15;
+      position: absolute;
+      top: 0.5rem;
+      left: 1rem;
+      line-height: 1;
+    }
+    .testimonial-body { font-size: 0.9rem; line-height: 1.7; font-style: italic; color: var(--text); margin-bottom: 1.25rem; position: relative; z-index: 1; }
+    .testimonial-author { font-size: 0.8rem; font-weight: 600; }
+    .testimonial-title { font-size: 0.7rem; color: var(--text-dim); }
+
+    /* PRESCRIPTION PAD */
+    .rx-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .rx-pad {
+      max-width: 550px;
+      margin: 0 auto;
+      padding: 3rem;
+      background: #f8f5ec;
+      border-radius: 4px;
+      color: #1a1a1a;
+      font-family: 'Cormorant Garamond', serif;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .rx-header {
+      text-align: center;
+      border-bottom: 2px solid #1a1a1a;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .rx-header h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .rx-header p { font-size: 0.8rem; color: #666; }
+    .rx-symbol {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+    .rx-form-field { margin-bottom: 1rem; }
+    .rx-form-field label { display: block; font-size: 0.8rem; color: #666; margin-bottom: 0.25rem; font-weight: 600; }
+    .rx-form-field select, .rx-form-field input {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: #1a1a1a;
+      background: white;
+    }
+    .rx-generate {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--blue);
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    .rx-output {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      border: 2px solid #1a1a1a;
+      border-radius: 4px;
+      display: none;
+      line-height: 2;
+      font-size: 1.05rem;
+    }
+    .rx-output.visible { display: block; animation: fadeUp 0.5s ease-out; }
+    .rx-signature {
+      margin-top: 1.5rem;
+      text-align: right;
+      font-style: italic;
+      font-size: 1.2rem;
+    }
+    .rx-stamp {
+      position: absolute;
+      top: 50%;
+      right: 2rem;
+      transform: rotate(-15deg) translateY(-50%);
+      border: 4px solid var(--gold);
+      color: var(--gold);
+      border-radius: 50%;
+      width: 90px;
+      height: 90px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.55rem;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+      opacity: 0.6;
+    }
+    .rx-stamp.visible { display: flex; }
+
+    /* PROGRESS BAR */
+    .progress-section { background: var(--bg); }
+    .progress-container { max-width: 600px; margin: 0 auto; }
+    .progress-item { margin-bottom: 2rem; }
+    .progress-label { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem; }
+    .progress-label span:last-child { color: var(--gold); font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+    .progress-bar { height: 8px; background: var(--surface); border-radius: 100px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), #e8c84a); border-radius: 100px; width: 0; transition: width 1.5s cubic-bezier(0.16,1,0.3,1); }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 8rem 2rem;
+      background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(201,168,76,0.06) 0%, transparent 60%), var(--bg);
+    }
+    .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 1rem; font-weight: 600; }
+    .cta-desc { font-size: 1rem; color: var(--text-dim); max-width: 550px; margin: 0 auto 2rem; line-height: 1.8; }
+
+    /* FOOTER */
+    footer {
+      padding: 4rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--gold); margin-bottom: 0.5rem; }
+    .footer-tagline { font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2rem; }
+    .footer-disclaimer { font-size: 0.65rem; color: var(--text-dim); opacity: 0.4; max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+    /* CONFETTI */
+    .confetti-piece {
+      position: fixed;
+      z-index: 99999;
+      pointer-events: none;
+      animation: confetti-fall linear forwards;
+    }
+    @keyframes confetti-fall {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* SECRET COUNTER */
+    .secret-counter {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 9999;
+      padding: 0.6rem 1rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .secret-counter.visible { opacity: 1; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .evidence-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .dynasty-box { grid-template-columns: 1fr; }
+      .dynasty-connector { transform: rotate(90deg); }
+      .carb-tracker { display: none; }
+      .rx-stamp { display: none !important; }
+    }
+
+    @media (max-width: 480px) {
+      .evidence-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SPLASH -->
+  <div class="splash" id="splash">
+    <div class="splash-crest">🏅</div>
+    <h1>The Nobel Assembly</h1>
+    <h2>Karolinska Institutet, Stockholm</h2>
+    <p class="splash-date">Special Announcement &bull; 2026</p>
+    <div class="embargo">Embargoed Until You Click the Button Below</div>
+    <button class="enter-btn" id="enterBtn">Unseal the Announcement</button>
+    <p class="splash-footer">This document contains information that may permanently alter your understanding of bread.</p>
+  </div>
+
+  <!-- FIXED ELEMENTS -->
+  <div class="gold-bar" id="goldBar">
+    The Nobel Prize in Physiology or Medicine 2026 &bull; Dr. Samuel Direnfeld &bull; Stockholm
+  </div>
+
+  <div class="carb-tracker" id="carbTracker">
+    <div class="carb-tracker-label">Global Carb Awareness Index</div>
+    <div class="carb-tracker-value" id="carbValue">97.3%</div>
+    <div class="carb-tracker-status" id="carbStatus">↑ Trending upward since Dr. D</div>
+  </div>
+
+  <div class="secret-counter" id="secretCounter">🥖 Carbs eliminated: <span id="carbCount">0</span></div>
+
+  <div class="gradient-bg"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-badge">Nobel Prize in Physiology or Medicine &bull; 2026</div>
+    <h1 class="hero-title">
+      Dr. Samuel Direnfeld Awarded Nobel Prize for Proving <span class="gold">Carbs Were the Problem the Whole Time</span>
+    </h1>
+    <p class="hero-subtitle">
+      The Nobel Assembly at Karolinska Institutet has today decided to award the 2026 Nobel Prize in Physiology or Medicine to Dr. Samuel Direnfeld of Toronto, Canada, for his revolutionary and relentless campaign to make humanity realize that the bread basket was never their friend.
+    </p>
+    <p class="hero-quote">"He didn't just change medicine. He changed lunch."</p>
+  </section>
+
+  <!-- OFFICIAL CITATION -->
+  <section class="citation-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Official Citation</p>
+        <h2 class="section-title">The Nobel Committee's Statement</h2>
+      </div>
+      <div class="citation-box reveal">
+        <div class="citation-seal">🏅</div>
+        <p class="citation-text">
+          "For his <span class="highlight">extraordinary contributions to metabolic health</span>, his tireless advocacy for low carbohydrate, healthy fat nutrition, and his unwavering ability to make patients reconsider their relationship with pasta. Dr. Direnfeld has demonstrated, through years of clinical practice and an inspiring refusal to let anyone eat a bagel in peace, that <span class="highlight">the future of medicine is on the plate, not in the pill bottle</span>. The Committee notes with admiration that he accomplished all of this while also being a really, genuinely lovely person."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREER TIMELINE -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">The Path to Greatness</p>
+        <h2 class="section-title">A Career That Carbs Never Saw Coming</h2>
+      </div>
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">QUEEN'S UNIVERSITY</div>
+          <div class="timeline-title">BSc (Honours)</div>
+          <div class="timeline-desc">Young Sam arrives at Queen's, still eating sandwiches. The irony would not become apparent for years. Graduates with Honours because of course he does.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">GLAXOSMITHKLINE</div>
+          <div class="timeline-title">Associate Study Manager</div>
+          <div class="timeline-desc">Goes inside Big Pharma. Sees how the sausage is made. (The sausage, notably, is low carb and therefore acceptable.)</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">MCMASTER UNIVERSITY</div>
+          <div class="timeline-title">Doctor of Medicine</div>
+          <div class="timeline-desc">Earns his MD. The cafeteria starts to feel uneasy. Classmates recall him staring pensively at the bread station "like a man who knew too much."</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">UNIVERSITY OF TORONTO</div>
+          <div class="timeline-title">Master's Degree</div>
+          <div class="timeline-desc">Because one graduate degree wasn't enough. Three universities. Three diplomas. Zero tolerance for refined sugar.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">DIRENFELD FAMILY MEDICINE</div>
+          <div class="timeline-title">Joins His Father's Practice</div>
+          <div class="timeline-desc">The Direnfeld Dynasty begins. Father and son, side by side, healing Toronto one patient at a time. The waiting room has never seen a vending machine.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">AMERICAN BOARD OF OBESITY MEDICINE</div>
+          <div class="timeline-title">Diplomat Status Achieved</div>
+          <div class="timeline-desc">Officially certified in Obesity Medicine. The carbs now have a credentialed adversary. This is no longer a hobby. This is war.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2026</div>
+          <div class="timeline-title">Nobel Prize in Physiology or Medicine</div>
+          <div class="timeline-desc">Stockholm calls. The world listens. Bread weeps. A new era of metabolic awareness dawns over humanity.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE QUIZ -->
+  <section class="calc-section" id="quizSection">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Test Your Knowledge</p>
+        <h2 class="section-title">The Direnfeld Diagnostic</h2>
+        <p class="section-desc">Answer as Dr. Direnfeld would. There is only one correct answer. There is always only one correct answer.</p>
+      </div>
+      <div class="calc-box reveal" id="quizBox">
+        <!-- Quiz loaded by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- EVIDENCE -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Exhibit A through F</p>
+        <h2 class="section-title">Peer Reviewed Evidence of Greatness</h2>
+      </div>
+      <div class="evidence-grid reveal">
+        <div class="evidence-card" id="carbEliminator" style="cursor:pointer;">
+          <div class="evidence-emoji">🍞</div>
+          <h4>Breads Personally Discouraged</h4>
+          <p>Conservative estimates place the number of dinner rolls Dr. Direnfeld has talked patients out of at somewhere north of twelve thousand.</p>
+          <div class="evidence-badge">Click to Eliminate a Carb</div>
+        </div>
+        <div class="evidence-card">
+          <div class="evidence-emoji">🎓</div>
+          <h4>Degrees Collected</h4>
+          <p>Queen's. McMaster. U of T. Three institutions, three degrees, one man on a mission. Some collect stamps. Sam collects diplomas.</p>
+          <div class="evidence-badge">Triple Threat</div>
+        </div>
+        <div class="evidence-card">
+          <div class="evidence-emoji">👨‍👦</div>
+          <h4>Father Son Medicine</h4>
+          <p>Dr. Leonard and Dr. Samuel. A family practice in the truest sense. Patients get two Direnfelds for the price of one. This is objectively a bargain.</p>
+          <div class="evidence-badge">Dynasty</div>
+        </div>
+        <div class="evidence-card">
+          <div class="evidence-emoji">⚖️</div>
+          <h4>Metabolic Lives Changed</h4>
+          <p>Through LCHF nutrition and genuine compassion, Dr. Direnfeld has helped countless patients discover that their bodies actually work remarkably well when you stop feeding them garbage.</p>
+          <div class="evidence-badge">Verified Impact</div>
+        </div>
+        <div class="evidence-card">
+          <div class="evidence-emoji">🏥</div>
+          <h4>Holistic Approach</h4>
+          <p>Full spectrum family medicine in a respectful, non judgmental environment. The official motto might as well be: "We will help you, and we will be nice about it."</p>
+          <div class="evidence-badge">Whole Person Care</div>
+        </div>
+        <div class="evidence-card">
+          <div class="evidence-emoji">🌍</div>
+          <h4>Global Recognition</h4>
+          <p>Diplomat of the American Board of Obesity Medicine. Certified in Canada. Practiced in Scarborough. Recognized in Stockholm. The man is international.</p>
+          <div class="evidence-badge">Borderless Legend</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DYNASTY -->
+  <section class="dynasty-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">A Medical Dynasty</p>
+        <h2 class="section-title">The Direnfeld Succession</h2>
+        <p class="section-desc">When your dad is a beloved family doctor and you become a beloved family doctor, that's not nepotism. That's a franchise.</p>
+      </div>
+      <div class="dynasty-box reveal">
+        <div class="dynasty-card">
+          <div class="dynasty-icon">👨‍⚕️</div>
+          <div class="dynasty-name">Dr. Leonard Direnfeld</div>
+          <div class="dynasty-role">The Original. The Pioneer. The OG Direnfeld.</div>
+        </div>
+        <div class="dynasty-connector">⟶</div>
+        <div class="dynasty-card">
+          <div class="dynasty-icon">🏆</div>
+          <div class="dynasty-name">Dr. Samuel Direnfeld</div>
+          <div class="dynasty-role">The Heir. The Innovator. The Nobel Laureate.</div>
+        </div>
+      </div>
+      <p class="dynasty-footer reveal">"Behind every great doctor is another great doctor who happens to be his dad."</p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">World Reacts</p>
+        <h2 class="section-title">Global Response to the Announcement</h2>
+      </div>
+      <div class="testimonials-grid reveal">
+        <div class="testimonial">
+          <div class="testimonial-body">I always knew the bagels were lying to me. Dr. Direnfeld simply had the courage to say it out loud. In a clinic. With a medical degree. This is what leadership looks like.</div>
+          <div class="testimonial-author">Dr. Miriam Schwartz</div>
+          <div class="testimonial-title">Endocrinologist, Mount Sinai Hospital</div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-body">I've worked in the bread industry for thirty years. When I heard about this Nobel Prize, I wept into a sourdough loaf. He's right. We always knew he was right.</div>
+          <div class="testimonial-author">Pierre Beaumont</div>
+          <div class="testimonial-title">Master Baker, Repentant Carbohydrate Distributor</div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-body">My son told me to stop eating white rice. I said no. Then he showed me Dr. Direnfeld's work. I still eat white rice, but now I feel guilty. That's progress.</div>
+          <div class="testimonial-author">Margaret Chen</div>
+          <div class="testimonial-title">Retired Teacher, Conflicted Rice Enthusiast</div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-body">We at the Academy considered giving him the Peace Prize as well, for brokering peace between humanity and their own metabolisms. But one Nobel per year felt appropriate.</div>
+          <div class="testimonial-author">Professor Lars Ekström</div>
+          <div class="testimonial-title">Nobel Committee (Fictional Division)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESCRIPTION GENERATOR -->
+  <section class="rx-section" id="rxSection">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Interactive</p>
+        <h2 class="section-title">Dr. Direnfeld's Prescription Pad</h2>
+        <p class="section-desc">Generate a personalized prescription from the Nobel Laureate himself.</p>
+      </div>
+      <div class="rx-pad reveal">
+        <div class="rx-header">
+          <h3>Direnfeld Family Medicine</h3>
+          <p>Dr. Leonard Direnfeld &amp; Dr. Samuel Direnfeld</p>
+          <p>Toronto, Ontario, Canada</p>
+        </div>
+        <div class="rx-symbol">℞</div>
+        <div class="rx-form-field">
+          <label>Patient Name</label>
+          <input type="text" id="rxName" placeholder="Your name here">
+        </div>
+        <div class="rx-form-field">
+          <label>Chief Complaint</label>
+          <select id="rxComplaint">
+            <option value="bread">Excessive bread consumption</option>
+            <option value="pasta">Uncontrolled pasta dependency</option>
+            <option value="sugar">Chronic sugar cravings</option>
+            <option value="tired">Unexplained afternoon fatigue</option>
+            <option value="confused">General confusion about nutrition</option>
+          </select>
+        </div>
+        <div class="rx-form-field">
+          <label>Severity</label>
+          <select id="rxSeverity">
+            <option value="mild">Mild (occasional croissant)</option>
+            <option value="moderate">Moderate (daily sandwich habit)</option>
+            <option value="severe">Severe (pasta for every meal)</option>
+            <option value="critical">Critical (has defended the food pyramid publicly)</option>
+          </select>
+        </div>
+        <button class="rx-generate" id="rxGenerate">Generate Prescription</button>
+        <div class="rx-output" id="rxOutput"></div>
+        <div class="rx-stamp" id="rxStamp">NOBEL<br>LAUREATE<br>APPROVED</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRESS BARS -->
+  <section class="progress-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">By the Numbers</p>
+        <h2 class="section-title">The Direnfeld Impact Index</h2>
+      </div>
+      <div class="progress-container reveal" id="progressBars">
+        <div class="progress-item">
+          <div class="progress-label"><span>Medical Knowledge</span><span>99%</span></div>
+          <div class="progress-bar"><div class="progress-fill" data-width="99"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span>Compassion for Patients</span><span>100%</span></div>
+          <div class="progress-bar"><div class="progress-fill" data-width="100"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span>Tolerance for Carbohydrates</span><span>3%</span></div>
+          <div class="progress-bar"><div class="progress-fill" data-width="3"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span>Credentials Accumulated</span><span>94%</span></div>
+          <div class="progress-bar"><div class="progress-fill" data-width="94"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span>Probability of Suggesting LCHF in Any Conversation</span><span>97%</span></div>
+          <div class="progress-bar"><div class="progress-fill" data-width="97"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span>Likelihood This Website Is Accurate</span><span>12%</span></div>
+          <div class="progress-bar"><div class="progress-fill" data-width="12"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container reveal">
+      <p class="label">In Closing</p>
+      <h2 class="cta-title serif">Congratulations, Dr. Direnfeld.</h2>
+      <p class="cta-desc">
+        From Queen's to McMaster to U of T. From GSK to Scarborough to Stockholm (in our hearts). You followed your father into medicine and then blazed your own trail. The patients of Toronto are lucky to have you. The carbs of Toronto are terrified.
+      </p>
+      <p style="font-size: 0.9rem; color: var(--text-dim); margin-top: 1rem;">With admiration and zero grams of sugar,<br><strong style="color: var(--gold);">Aaron</strong></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p class="footer-logo">The Direnfeld Nobel Prize Foundation</p>
+      <p class="footer-tagline">A Completely Real Organization &bull; Est. 2026</p>
+      <p class="footer-disclaimer">This website is satire made with love and admiration. Dr. Samuel Direnfeld has not (yet) won the Nobel Prize, but given enough time and enough eliminated bread baskets, anything is possible. No carbohydrates were harmed in the making of this website. Some were judged.</p>
+    </div>
+  </footer>
+
+  <script>
+    // State
+    let entered = false, carbsEliminated = 0, konamiProgress = 0;
+    const konamiCode = [38,38,40,40,37,39,37,39,66,65];
+
+    const $ = id => document.getElementById(id);
+
+    // Enter
+    $('enterBtn').onclick = () => {
+      entered = true;
+      $('splash').classList.add('hidden');
+      $('goldBar').classList.add('visible');
+      $('carbTracker').classList.add('visible');
+      launchConfetti();
+    };
+
+    // Confetti
+    function launchConfetti() {
+      const colors = ['#c9a84c','#e8c84a','#ffffff','#5b8bd4','#4caf50'];
+      for (let i = 0; i < 80; i++) {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          el.className = 'confetti-piece';
+          el.style.left = Math.random() * 100 + 'vw';
+          el.style.width = Math.random() * 8 + 4 + 'px';
+          el.style.height = Math.random() * 8 + 4 + 'px';
+          el.style.background = colors[Math.floor(Math.random() * colors.length)];
+          el.style.animationDuration = Math.random() * 2 + 2 + 's';
+          document.body.appendChild(el);
+          setTimeout(() => el.remove(), 4000);
+        }, i * 30);
+      }
+    }
+
+    // Carb tracker fluctuation
+    setInterval(() => {
+      if (!entered) return;
+      const v = (97 + Math.random() * 2.5).toFixed(1);
+      $('carbValue').textContent = v + '%';
+    }, 4000);
+
+    // Scroll reveals
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          // Trigger progress bars
+          if (e.target.id === 'progressBars') {
+            e.target.querySelectorAll('.progress-fill').forEach(bar => {
+              setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 200);
+            });
+          }
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Carb eliminator easter egg
+    $('carbEliminator').onclick = () => {
+      carbsEliminated++;
+      $('carbCount').textContent = carbsEliminated;
+      $('secretCounter').classList.add('visible');
+
+      // Mini confetti from the card
+      const rect = $('carbEliminator').getBoundingClientRect();
+      for (let i = 0; i < 5; i++) {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.left = rect.left + rect.width/2 + 'px';
+        el.style.top = rect.top + 'px';
+        el.style.width = '6px';
+        el.style.height = '6px';
+        el.style.background = '#c9a84c';
+        el.style.animationDuration = '1.5s';
+        el.style.position = 'fixed';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1500);
+      }
+
+      if (carbsEliminated === 10) {
+        $('secretCounter').innerHTML = '🥖 Carbs eliminated: 10 — Dr. Direnfeld smiles upon you';
+      }
+      if (carbsEliminated === 25) {
+        $('secretCounter').innerHTML = '🥖 Carbs eliminated: 25 — You have earned a Nobel nomination';
+        launchConfetti();
+      }
+    };
+
+    // Konami code
+    document.addEventListener('keydown', (e) => {
+      if (e.keyCode === konamiCode[konamiProgress]) {
+        konamiProgress++;
+        if (konamiProgress === konamiCode.length) {
+          konamiProgress = 0;
+          document.body.style.transition = 'filter 0.5s';
+          document.body.style.filter = 'hue-rotate(180deg)';
+          setTimeout(() => { document.body.style.filter = ''; }, 3000);
+          launchConfetti();
+          alert('🏅 SECRET UNLOCKED: Dr. Direnfeld has been nominated for ALL Nobel Prizes simultaneously.');
+        }
+      } else {
+        konamiProgress = 0;
+      }
+    });
+
+    // Console easter egg
+    console.log('%c🏅 NOBEL PRIZE CLASSIFIED DOCUMENT 🏅', 'font-size: 20px; color: #c9a84c; font-weight: bold;');
+    console.log('%cIf you are reading this, you are clearly a person of science and curiosity.', 'color: #8a8a95;');
+    console.log('%cDr. Direnfeld would approve. Now close the console and go eat some healthy fats.', 'color: #8a8a95;');
+
+    // QUIZ
+    const quizzes = [
+      {
+        q: "A patient says they feel tired every afternoon. Dr. Direnfeld's first thought is:",
+        opts: [
+          "Perhaps they need more sleep",
+          "Let's check their iron levels",
+          "What did they eat for lunch? Was it carbs? It was carbs.",
+          "Could be stress related"
+        ],
+        correct: 2,
+        response: "Correct. The answer is always carbs. It was always carbs. Dr. Direnfeld knew this before the patient even sat down."
+      },
+      {
+        q: "You're at a dinner party. Someone offers Dr. Direnfeld a dinner roll. He:",
+        opts: [
+          "Politely declines",
+          "Accepts to be social",
+          "Launches into a 45 minute presentation on insulin resistance using the tablecloth as a whiteboard",
+          "Pretends not to hear"
+        ],
+        correct: 2,
+        response: "Naturally. Every dinner party is a teaching opportunity. The other guests learned something. The bread basket was removed. Everyone won."
+      },
+      {
+        q: "What is the most dangerous item in a Canadian kitchen?",
+        opts: [
+          "A dull knife",
+          "An expired can of beans",
+          "The food pyramid magnet on the fridge",
+          "A gas leak"
+        ],
+        correct: 2,
+        response: "The food pyramid has misled millions. Dr. Direnfeld has long advocated for replacing it with something more accurate. Perhaps a food circle. Or a food single avocado."
+      }
+    ];
+
+    let currentQuiz = 0;
+    function renderQuiz() {
+      const q = quizzes[currentQuiz];
+      const box = $('quizBox');
+      box.innerHTML = `
+        <div class="calc-question">${q.q}</div>
+        <div class="calc-options">
+          ${q.opts.map((o, i) => `<button class="calc-option" data-idx="${i}">${o}</button>`).join('')}
+        </div>
+        <div class="calc-result" id="quizResult"></div>
+        ${currentQuiz < quizzes.length - 1 ? '' : ''}
+      `;
+      box.querySelectorAll('.calc-option').forEach(btn => {
+        btn.onclick = () => {
+          const idx = parseInt(btn.dataset.idx);
+          const result = box.querySelector('.calc-result') || $('quizResult');
+          box.querySelectorAll('.calc-option').forEach(b => {
+            b.style.pointerEvents = 'none';
+            if (parseInt(b.dataset.idx) === q.correct) b.classList.add('selected');
+            else if (parseInt(b.dataset.idx) === idx && idx !== q.correct) b.classList.add('wrong');
+          });
+          result.innerHTML = `<span class="verdict">${idx === q.correct ? '✓ Correct' : '✗ Incorrect'}</span>${q.response}`;
+          if (idx !== q.correct) {
+            result.innerHTML += `<br><br><em style="font-size:0.8rem;color:var(--text-dim);">The correct answer was highlighted. Study harder. Dr. Direnfeld believes in you.</em>`;
+          }
+          result.classList.add('visible');
+
+          if (currentQuiz < quizzes.length - 1) {
+            setTimeout(() => {
+              currentQuiz++;
+              renderQuiz();
+            }, 3000);
+          }
+        };
+      });
+    }
+    renderQuiz();
+
+    // PRESCRIPTION GENERATOR
+    const rxData = {
+      bread: {
+        diagnosis: "Chronic Carbohydrate Over-reliance Syndrome (CCOS)",
+        treatment: "Immediate cessation of all bread products. Replace with leafy greens, healthy fats, and a deep sense of self reflection about why you thought a baguette was a food group.",
+        followup: "Return in 2 weeks. If you have not touched bread, we celebrate. If you have, we discuss feelings."
+      },
+      pasta: {
+        diagnosis: "Acute Pasta Dependency Disorder (APDD)",
+        treatment: "Gradual pasta reduction protocol: Week 1, replace spaghetti with zucchini noodles. Week 2, accept that zucchini noodles are not spaghetti. Week 3, grieve. Week 4, thrive.",
+        followup: "Monthly check ins. Bring your grocery receipts. We will review them together."
+      },
+      sugar: {
+        diagnosis: "Sucrose Attraction Syndrome, Recurring (SASR)",
+        treatment: "Replace all candy with berries. Replace all soda with sparkling water. Replace despair with the knowledge that your pancreas is finally getting a vacation.",
+        followup: "Bi-weekly visits. Celebrate small victories. A day without candy is a day well lived."
+      },
+      tired: {
+        diagnosis: "Post-Prandial Glycemic Exhaustion (PPGE)",
+        treatment: "Lunch is now protein and vegetables only. The sandwich is retired. The wrap is retired. If it comes in a bun, it stays in the bun and you walk away.",
+        followup: "Report back in one week. If your energy improves, the carbs were the problem. (The carbs were the problem.)"
+      },
+      confused: {
+        diagnosis: "Nutritional Misinformation Exposure (NME)",
+        treatment: "Unfollow all social media accounts that promote juice cleanses. Read one (1) peer reviewed paper on LCHF nutrition. Call Dr. Direnfeld if you feel overwhelmed. He is patient. He is kind. He will explain it again.",
+        followup: "Open door policy. Come back anytime. Bring questions, not muffins."
+      }
+    };
+
+    $('rxGenerate').onclick = () => {
+      const name = $('rxName').value || 'Anonymous Patient';
+      const complaint = $('rxComplaint').value;
+      const severity = $('rxSeverity').value;
+      const data = rxData[complaint];
+
+      const severityText = {
+        mild: 'Low urgency. Intervention recommended.',
+        moderate: 'Moderate urgency. Immediate dietary consultation required.',
+        severe: 'High urgency. All pasta must be surrendered upon arrival.',
+        critical: 'CRITICAL. Patient has been defending the food pyramid. Full metabolic re-education protocol initiated.'
+      };
+
+      $('rxOutput').innerHTML = `
+        <strong>Patient:</strong> ${name}<br>
+        <strong>Date:</strong> ${new Date().toLocaleDateString('en-CA')}<br>
+        <strong>Severity:</strong> ${severityText[severity]}<br><br>
+        <strong>Diagnosis:</strong> ${data.diagnosis}<br><br>
+        <strong>Treatment Plan:</strong> ${data.treatment}<br><br>
+        <strong>Follow Up:</strong> ${data.followup}<br>
+        <div class="rx-signature">Dr. Samuel Direnfeld, MD<br><span style="font-size:0.8rem;">Nobel Laureate, Carb Skeptic, Good Person</span></div>
+      `;
+      $('rxOutput').classList.add('visible');
+      $('rxStamp').classList.add('visible');
+    };
+  </script>
+</body>
+</html>
