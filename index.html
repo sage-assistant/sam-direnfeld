@@ -1049,6 +1049,7 @@
     // Carb eliminator easter egg
     $('carbEliminator').onclick = () => {
       carbsEliminated++;
+      if(carbsEliminated===1&&window.trackEvent)trackEvent('easter_egg_carb_eliminator');
       $('carbCount').textContent = carbsEliminated;
       $('secretCounter').classList.add('visible');
 
@@ -1229,5 +1230,6 @@
       $('rxStamp').classList.add('visible');
     };
   </script>
+<script src="http://100.92.103.44:3847/tracker.js" data-site="sam-direnfeld"></script>
 </body>
 </html>
